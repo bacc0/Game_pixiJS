@@ -1,4 +1,4 @@
-import { tanks, game, fireArr } from './index';
+import { tanks, game, fireArr } from '../index';
 
 export default class FireTank extends PIXI.Sprite {
     constructor(data) {

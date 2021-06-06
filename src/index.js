@@ -1,28 +1,21 @@
-import Hero from './Hero';
-import FireTank from './FireTank';
-import EndScreen from './EndScreen';
-import EnemyAir from './EnemyAir';
-import EnemyTank from './EnemyTank';
-import Background from './Background';
+import Hero from './JS/Hero';
+import FireTank from './JS/FireTank';
+import EndScreen from './JS/EndScreen';
+import EnemyAir from './JS/EnemyAir';
+import EnemyTank from './JS/EnemyTank';
+import { initLevel } from './JS/Background';
+import { intersectHandler } from './JS/__intersect';
 
-import { intersectHandler } from './__funcs';
+export let game;
 
+let tank, tiling, hero, gameOver, heroExplosion, enemy;
+export { hero, tiling };
 
-let game;
-
-let bgX = 0;
-let bgSpeed = 1;
-
-let BG_back, BG_middle_1, BG_middle_2, BG_front;
-let tank, tiling, hero, gameOver, heroExplosion, enemy, createEnemy, fire;
-
-let keys = {};
-let tanks = [];
 let enemies = [];
-let fireArr = [];
-let imagesBG = [];
-
-export { tanks, game, fireArr, keys, hero };
+export let keys = {};
+export let tanks = [];
+export let fireArr = [];
+export let imagesBG = [];
 
 
 window.onload = function () { initialize() };
@@ -51,7 +44,6 @@ const initialize = () => {
     createHero();
 
     createEnemyAir();
-    
 
     createEnemyTank();
 
@@ -63,26 +55,28 @@ const initialize = () => {
     window.addEventListener('keyup', keysUp);
 };
 
-
-const keysDown = (e) => {
-    keys[e.keyCode] = true;
-  
-};
-const keysUp = (e) => {
-    keys[e.keyCode] = false;
-};
+const keysDown = (e) => { keys[e.keyCode] = true; };
+const keysUp = (e) => { keys[e.keyCode] = false; };
 
 
-const gameLoop = () => {
+export const gameLoop = () => {
+
     hero.updatePosition();
 
     imagesBG.forEach(img => {
         img.updateBG()
     });
+
+    tanks.forEach( t => {
+        t.updatePosition();
+    
+    });
+
     enemies.forEach(enemy => {
         enemy.updatePosition();
         intersectHandler(hero, enemy, heroExplosion, gameOver);
     });
+
     fireArr.forEach(fire => {
         fire.updatePosition();
         intersectHandler(hero, fire, heroExplosion, gameOver);
@@ -90,43 +84,9 @@ const gameLoop = () => {
 };
 
 
-const initLevel = () => {
-    BG_back = createBG(game.loader.resources['BG_back'].texture);
-    BG_middle_1 = createBG(game.loader.resources['BG_middle_1'].texture);
-    BG_middle_2 = createBG(game.loader.resources['BG_middle_2'].texture);
-    BG_front = createBG(game.loader.resources['BG_front'].texture);
-
-    game.ticker.add(gameLoop);
-};
-
-
-let count = 0;
-const createBG = (texture) => {
-
-    let speed = count === 0
-        ? 0.5
-        : count === 1
-            ? 1.5
-            : count === 2
-                ? 3
-                : 6;
-    tiling = new Background({ textureBG: texture, speedBG: speed });
-    tiling.position.set(0, 0);
-    game.stage.addChild(tiling);
-    imagesBG.push(tiling);
-
-    tiling = new Background({ textureBG: texture, speedBG: speed });
-    tiling.position.set(1140, 0);
-    game.stage.addChild(tiling);
-    imagesBG.push(tiling);
-
-    count++;
-
-    return tiling;
-};
-
 
 const createHero = () => {
+
     hero = new Hero({
         x: game.view.width / 6,
         y: game.view.height / 2,
@@ -144,8 +104,6 @@ const createHero = () => {
         height: 130
     });
     game.stage.addChild(heroExplosion);
-    heroExplosion.scale.x = 0.5;
-    heroExplosion.scale.y = 0.4;
     heroExplosion.rotation = 0.2;
     heroExplosion.visible = false;
 };
@@ -188,7 +146,9 @@ const createTankFire = () => {
 
 let tempY = 380;
 let tempX = 1200;
+
 const createEnemyAir = () => {
+
     for (let i = 1; i <= 6; i++) {
         enemy = new EnemyAir({
             x: tempX,
@@ -205,6 +165,7 @@ const createEnemyAir = () => {
 
 
 const createGameOver = () => {
+
     gameOver = new EndScreen({
         x: 100,
         y: 0,

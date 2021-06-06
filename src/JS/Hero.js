@@ -1,4 +1,4 @@
-import { keys, hero, game } from './index';
+import { keys, hero, game } from '../index';
 
 export default class Hero extends PIXI.Sprite {
     constructor(data) {
