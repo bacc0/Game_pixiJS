@@ -1,6 +1,7 @@
 import { keys, hero, Game } from '../index';
 
 export default class Hero extends PIXI.Sprite {
+    
     constructor(data) {
         super(PIXI.Texture.from(data.imageUrl));
 

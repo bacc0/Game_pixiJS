@@ -1,5 +1,6 @@
 
 export default class EndScreen extends PIXI.Sprite {
+	
 	constructor(data) {
 		super(PIXI.Texture.from(data.imageUrl));
 

@@ -11,11 +11,27 @@
         <title>Game</title>
 
         <script src="pixi.min.js"></script>
-        <style> body { margin: 0 }; </style>
+        <style> 
+        body { 
+            margin: 0 
+        }
+        #titleContainer {
+            width: 1140px;
+        }
+        #title {
+            text-align: center;
+            font-family: Goldman;
+            color:darkgrey;
+            margin-top: 30px;
+        }
+        </style>
     </head>
 
     <body>
         <div id='gameDiv'></div>
+        <div id=titleContainer>
+            <h3 id="title" >Use the four arrow keys for navigation!</h3>
+        </div>
     </body>
 
 </html>

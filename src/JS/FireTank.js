@@ -1,6 +1,7 @@
-import { tanks, game, fireArr } from '../index';
+import { tanks } from '../index';
 
 export default class FireTank extends PIXI.Sprite {
+
     constructor(data) {
         super(PIXI.Texture.from(data.imageUrl));
 

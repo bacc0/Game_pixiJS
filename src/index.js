@@ -8,7 +8,10 @@ import { intersectHandler, score, updateScore } from './JS/__intersect';
 
 export let Game;
 
-let tank, gameOver, heroExplosion, enemy;
+let tank, 
+    gameOver, 
+    heroExplosion, 
+    enemy;
 
 let enemies = [];
 export let hero;
@@ -66,21 +69,21 @@ export const gameLoop = () => {
 
     hero.updatePosition();
 
-    imagesBG.forEach(img => {
-        img.updateBG()
+    imagesBG.forEach( (imgBG) => {
+        imgBG.updateBG()
     });
 
-    tanks.forEach( t => {
-        t.updatePosition();
+    tanks.forEach( (tank) => {
+        tank.updatePosition();
     
     });
 
-    enemies.forEach(enemy => {
+    enemies.forEach( (enemy) => {
         enemy.updatePosition();
         intersectHandler(hero, enemy, heroExplosion, gameOver);
     });
 
-    fireArr.forEach(fire => {
+    fireArr.forEach( (fire) => {
         fire.updatePosition();
         intersectHandler(hero, fire, heroExplosion, gameOver);
     });
@@ -88,7 +91,6 @@ export const gameLoop = () => {
     scoreText.text = `Score: ${(score / 1000).toFixed(1)}00 km`;
     updateScore(score);
 };
-
 
 
 const createHero = () => {
@@ -190,6 +192,5 @@ const createScore = () => {
         fontSize: 30
     });
     scoreText.x = 10;
-    scoreText.y = 10;
     Game.stage.addChild(scoreText);
 };

@@ -1,4 +1,5 @@
 export default class EnemyTank extends PIXI.Sprite {
+    
     constructor(data) {
         super(PIXI.Texture.from(data.imageUrl));
 

@@ -2,6 +2,7 @@ import { Game, imagesBG, gameLoop } from '../index';
 
 
 export default class Background extends PIXI.Sprite {
+    
     constructor(data) {
         super();
         this.texture = data.textureBG;
