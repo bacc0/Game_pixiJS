@@ -1,4 +1,4 @@
-<img width="675" alt="game123" src="https://user-images.githubusercontent.com/37631578/120941271-92723480-c719-11eb-8c49-010563209be1.png">
+<img width="675" alt="game123" src="https://user-images.githubusercontent.com/37631578/120941914-4d500180-c71d-11eb-9c18-12b31bb88b24.png">
 
 
 [Node.js](https://nodejs.org) is required to install dependencies and run scripts via `npm`.
