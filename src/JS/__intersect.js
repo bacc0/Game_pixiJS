@@ -1,8 +1,12 @@
-// const audio = new Audio('src/assets/bomb_explosion.mp3');
+export let score = 0;
+
+export const updateScore = (val) => {
+    return score = val + 1;
+};
 
 export const intersectHandler = (a, b, heroExplosion, gameOver) => {
 
-    const intersectObjects = (a, b) => {
+     const intersectObjects = (a, b) => {
 
         let aBox = a.getBounds();
         let bBox = b.getBounds();
@@ -22,12 +26,13 @@ export const intersectHandler = (a, b, heroExplosion, gameOver) => {
         gameOver.visible = true;
         // audio.play();
 
-        setTimeout(() => {
-            a.visible = true;
-            b.visible = true;
+        score = 0;
+        return setTimeout(() => {
+                a.visible = true;
+                b.visible = true;
 
-            heroExplosion.visible = false;
-            gameOver.visible = false;
+                heroExplosion.visible = false;
+                gameOver.visible = false;
 
         }, 666);
     };

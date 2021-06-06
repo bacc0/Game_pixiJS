@@ -1,4 +1,4 @@
-import { keys, hero, game } from '../index';
+import { keys, hero, Game } from '../index';
 
 export default class Hero extends PIXI.Sprite {
     constructor(data) {
@@ -14,7 +14,7 @@ export default class Hero extends PIXI.Sprite {
         if (keys['38'] && hero.y !== 35) {
             hero.y -= 5;
         };
-        if (keys['40'] && hero.y !== game.view.height - 140) {
+        if (keys['40'] && hero.y !== Game.view.height - 140) {
             hero.y += 5;
         };
         if (keys['37'] && hero.x > 50) {
@@ -24,4 +24,6 @@ export default class Hero extends PIXI.Sprite {
             hero.x += 5;
         };
     };
+
+    
 };

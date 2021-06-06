@@ -1,4 +1,4 @@
-import { game, imagesBG, gameLoop } from '../index';
+import { Game, imagesBG, gameLoop } from '../index';
 
 
 export default class Background extends PIXI.Sprite {
@@ -19,19 +19,19 @@ export default class Background extends PIXI.Sprite {
 
 
 export const initLevel = () => {
-    const BG_back = createBG(game.loader.resources['BG_back'].texture);
-    const BG_middle_1 = createBG(game.loader.resources['BG_middle_1'].texture);
-    const BG_middle_2 = createBG(game.loader.resources['BG_middle_2'].texture);
-    const BG_front = createBG(game.loader.resources['BG_front'].texture);
+    const BG_back = createBG(Game.loader.resources['BG_back'].texture);
+    const BG_middle_1 = createBG(Game.loader.resources['BG_middle_1'].texture);
+    const BG_middle_2 = createBG(Game.loader.resources['BG_middle_2'].texture);
+    const BG_front = createBG(Game.loader.resources['BG_front'].texture);
 
-    game.ticker.add(gameLoop);
+    Game.ticker.add(gameLoop);
 };
 
 
 let count = 0;
 
 const createBG = (texture) => {
-    let tiling;
+    let newBG;
 
     let speed = count === 0
         ? 0.5
@@ -40,17 +40,17 @@ const createBG = (texture) => {
             : count === 2
                 ? 3
                 : 6;
-    tiling = new Background({ textureBG: texture, speedBG: speed });
-    tiling.position.set(0, 0);
-    game.stage.addChild(tiling);
-    imagesBG.push(tiling);
+    newBG = new Background({ textureBG: texture, speedBG: speed });
+    newBG.position.set(0, 0);
+    Game.stage.addChild(newBG);
+    imagesBG.push(newBG);
 
-    tiling = new Background({ textureBG: texture, speedBG: speed });
-    tiling.position.set(1140, 0);
-    game.stage.addChild(tiling);
-    imagesBG.push(tiling);
+    newBG = new Background({ textureBG: texture, speedBG: speed });
+    newBG.position.set(1140, 0);
+    Game.stage.addChild(newBG);
+    imagesBG.push(newBG);
 
     count++;
 
-    return tiling;
+    return newBG;
 };
