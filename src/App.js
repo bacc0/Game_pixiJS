@@ -13,7 +13,6 @@ export let Game;
 let gameOver,
     scoreText,
     heroExplosion;
-
 let enemies = [];
 
 export let hero;
