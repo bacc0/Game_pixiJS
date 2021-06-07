@@ -1,18 +1,16 @@
 import * as PIXI from "pixi.js";
 
-import Hero from './JS/Hero';
-import FireTank from './JS/FireTank';
-import EnemyAir from './JS/EnemyAir';
-import EndScreen from './JS/EndScreen';
-import EnemyTank from './JS/EnemyTank';
-import { creatBackground } from './JS/Background';
-import { intersectHandler, score, updateScore } from './JS/__intersect';
+import Hero from './scripts/Hero';
+import FireTank from './scripts/FireTank';
+import EnemyAir from './scripts/EnemyAir';
+import EndScreen from './scripts/EndScreen';
+import EnemyTank from './scripts/EnemyTank';
+import { creatBackground } from './scripts/Background';
+import { score, updateScore, intersectHandler } from './scripts/__intersect';
 
 export let Game;
 
-let tank,
-    enemy,
-    gameOver,
+let gameOver,
     scoreText,
     heroExplosion;
 
@@ -34,7 +32,7 @@ window.onload = () => {
         });
         document.body.appendChild(Game.view);
     
-    // --------------------------------------(Adding GAME ELEMENTS)   
+    // --------------------------------------(Adding ELEMENTS)   
         creatBackground();
         createGameOver();
         createHero();
@@ -86,11 +84,10 @@ export const gameLoop = () => {
 // --------------------------------------(Create HERO)
 const createHero = () => {
 
-    console.log(Game.loader.resources.fourBG.url)
     hero = new Hero({
         x: Game.view.width / 6,
         y: Game.view.height / 2,
-        imageUrl: 'src/assets/img/player.png',
+        imageUrl: 'src/assets/sprites/player.png',
         width: 120,
         height: 70
     });
@@ -99,7 +96,7 @@ const createHero = () => {
     heroExplosion = new Hero({
         x: 0,
         y: 0,
-        imageUrl: 'src/assets/img/explosion.png',
+        imageUrl: 'src/assets/sprites/explosion.png',
         width: 150,
         height: 130
     });
@@ -113,10 +110,10 @@ const createEnemyTank = () => {
 
     let positionX = 680;
     for (let i = 0; i <= 2; i++) {
-        tank = new EnemyTank({
+        const tank = new EnemyTank({
             x: positionX,
             y: 454,
-            imageUrl: 'src/assets/img/tank.png',
+            imageUrl: 'src/assets/sprites/tank.png',
             width: 120,
             height: 40
         });
@@ -133,7 +130,7 @@ const createTankFire = () => {
         const fire = new FireTank({
             x: 800,
             y: 450,
-            imageUrl: 'src/assets/img/fire.png',
+            imageUrl: 'src/assets/sprites/fire.png',
         });
         fire.rotation = 3.6;
         fire.width = 26;
@@ -150,10 +147,10 @@ let tempX = 1200;
 const createEnemyAir = () => {
 
     for (let i = 1; i <= 6; i++) {
-        enemy = new EnemyAir({
+        const enemy = new EnemyAir({
             x: tempX,
             y: tempY,
-            imageUrl: 'src/assets/img/enemy.png',
+            imageUrl: 'src/assets/sprites/enemy.png',
             speed: 7
         });
         tempY -= 70;
@@ -182,7 +179,7 @@ const createGameOver = () => {
     gameOver = new EndScreen({
         x: 100,
         y: 0,
-        imageUrl: 'src/assets/img/game_over.png'
+        imageUrl: 'src/assets/sprites/game_over.png'
     });
     Game.stage.addChild(gameOver);
     gameOver.visible = false;

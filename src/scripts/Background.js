@@ -25,10 +25,10 @@ export default class Background extends PIXI.Sprite {
 export const creatBackground = () => {
 
 Game.loader
-        .add('oneBG', 'src/assets/img/backBG.png')
-        .add('twoBG', 'src/assets/img/mid2BG.png')
-        .add('threeBG', 'src/assets/img/midBG.png')
-        .add('fourBG', 'src/assets/img/frontBG.png');
+        .add('oneBG', 'src/assets/sprites/backBG.png')
+        .add('twoBG', 'src/assets/sprites/mid2BG.png')
+        .add('threeBG', 'src/assets/sprites/midBG.png')
+        .add('fourBG', 'src/assets/sprites/frontBG.png');
     Game.loader.onComplete.add(initLevel);
     Game.loader.load();
 };
