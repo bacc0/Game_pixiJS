@@ -1,4 +1,6 @@
-import { tanks } from '../index';
+import * as PIXI from "pixi.js";
+
+import { tanks } from '../App';
 
 export default class FireTank extends PIXI.Sprite {
 

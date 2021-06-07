@@ -1,7 +1,9 @@
-import { keys, hero, Game } from '../index';
+import * as PIXI from "pixi.js";
+
+import { keys, hero, Game } from '../App';
 
 export default class Hero extends PIXI.Sprite {
-    
+
     constructor(data) {
         super(PIXI.Texture.from(data.imageUrl));
 
@@ -25,6 +27,4 @@ export default class Hero extends PIXI.Sprite {
             hero.x += 5;
         };
     };
-
-    
 };

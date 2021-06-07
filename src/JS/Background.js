@@ -1,5 +1,6 @@
-import { Game, imagesBG, gameLoop } from '../index';
+import * as PIXI from "pixi.js";
 
+import { Game, imagesBG, gameLoop } from '../App';
 
 export default class Background extends PIXI.Sprite {
 
