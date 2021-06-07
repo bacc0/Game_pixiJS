@@ -10,26 +10,29 @@
         <title>Game</title>
         <style> 
         body { 
-            margin: 0 
-        }
-        #titleContainer {
-            width: 1140px;
+            margin: 0;
+            background-color:#00000022; ; 
         }
         #title {
             text-align: center;
             font-family: Goldman;
-            color:#00000033;
+            color:#0000002f;
             margin-top: 30px;
+        }
+        canvas {
+            position:absolute;
+            left:50%;
+            transform: translate(-50%, 3%);
+            -o-transform: translate(-50%, -3%);
+            -ms-transform: translate(-50%, -3%);
+            -moz-transform: translate(-50%, 3%);
+            -webkit-transform: translate(-50%, 3%);
         }
         </style>
     </head>
 
     <body>
-        <div id='gameDiv'></div>
-
-        <div id=titleContainer>
-            <h3 id="title" >Use the four arrow keys for navigation!</h3>
-        </div>
+        <h3 id="title" >Use the four arrow keys for navigation!</h3>
     </body>
 
 </html>

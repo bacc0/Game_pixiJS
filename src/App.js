@@ -4,7 +4,7 @@ import FireTank from './JS/FireTank';
 import EnemyAir from './JS/EnemyAir';
 import EndScreen from './JS/EndScreen';
 import EnemyTank from './JS/EnemyTank';
-import { initLevel } from './JS/Background';
+import { creatBackground } from './JS/Background';
 import { intersectHandler, score, updateScore } from './JS/__intersect';
 
 export class App {
@@ -35,39 +35,28 @@ const start = () => {
     Game = new PIXI.Application({
         width: 1140,
         height: 540,
-        backgroundColor: 0x60B6FF
+        backgroundColor: 0x60B6FF,
     });
+    document.body.appendChild(Game.view);
 
-    document.querySelector('#gameDiv').appendChild(Game.view);
-    // Game.stage.interactive = true;
-
-// ----------------  (Load BACKGROUND IMAGES)   ----------------  
-    Game.loader
-        .add('oneBG', require('./assets/img/backBG.png'))
-        .add('twoBG', require('./assets/img/mid2BG.png'))
-        .add('threeBG', require('./assets/img/midBG.png'))
-        .add('fourBG', require('./assets/img/frontBG.png'));
-        
-    Game.loader.onComplete.add(initLevel);
-    Game.loader.load();
-
-// ----------------  (Adding GAME ELEMENTS)   ------------------
+// --------------------------------------(Adding GAME ELEMENTS)   
+    creatBackground();
     createGameOver();
     createHero();
     createEnemyAir();
     createTankFire();
     createEnemyTank();
     createScore();
+
     Game.ticker.add(gameLoop);
 
-// ----------------  (Add EVENT LISTENER )  --------------------
+// --------------------------------------(Add EVENT LISTENER)
     window.addEventListener('keydown', keysDown);
     window.addEventListener('keyup', keysUp);
 };
 
 const keysDown = e => { keys[e.keyCode] = true; };
 const keysUp = e => { keys[e.keyCode] = false; };
-
 
 // -----------------------------------------------------------[     GAME LOOP     ]-----------------
 export const gameLoop = () => {
@@ -97,7 +86,7 @@ export const gameLoop = () => {
 };
 
 
-// ----------------  (Create HERO)  ----------------
+// --------------------------------------(Create HERO)
 const createHero = () => {
 
     console.log(Game.loader.resources.fourBG.url)
@@ -122,7 +111,7 @@ const createHero = () => {
     heroExplosion.visible = false;
 };
 
-//----------------  (Create TANK)  ----------------  
+// --------------------------------------(Create TANK) 
 const createEnemyTank = () => {
 
     let positionX = 680;
@@ -140,7 +129,7 @@ const createEnemyTank = () => {
     };
 };
 
-// ----------------  (Create TANK FIRE) ------------
+// --------------------------------------(Create TANK FIRE)
 const createTankFire = () => {
 
     for (let i = 1; i <= 6; i++) {
@@ -157,7 +146,7 @@ const createTankFire = () => {
     };
 };
 
-// ----------------  (Create AIRPLANE)  -----------
+// --------------------------------------(Create AIRPLANE)
 let tempY = 380;
 let tempX = 1200;
 
@@ -177,7 +166,7 @@ const createEnemyAir = () => {
     };
 };
 
-// ----------------  (Create SCORE) ---------------
+// --------------------------------------(Create SCORE)
 const createScore = () => {
     scoreText = new PIXI.Text('Score: 0');
 
@@ -188,9 +177,12 @@ const createScore = () => {
     });
     scoreText.x = 10;
     Game.stage.addChild(scoreText);
+
+    
+
 };
 
-//----------------  (Create GAME OVER Screen)  ------ 
+// --------------------------------------(Create GAME OVER Screen)
 const createGameOver = () => {
 
     gameOver = new EndScreen({

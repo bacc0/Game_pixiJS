@@ -21,7 +21,20 @@ export default class Background extends PIXI.Sprite {
 
 
 
-export const initLevel = () => {
+// --------------------------------------(Load BACKGROUND IMAGES)
+export const creatBackground = () => {
+
+Game.loader
+        .add('oneBG', 'src/assets/img/backBG.png')
+        .add('twoBG', 'src/assets/img/mid2BG.png')
+        .add('threeBG', 'src/assets/img/midBG.png')
+        .add('fourBG', 'src/assets/img/frontBG.png');
+    Game.loader.onComplete.add(initLevel);
+    Game.loader.load();
+};
+
+
+const initLevel = () => {
     const oneBG = createBG(Game.loader.resources['oneBG'].texture);
     const twoBG = createBG(Game.loader.resources['twoBG'].texture);
     const threeBG = createBG(Game.loader.resources['threeBG'].texture);
@@ -30,8 +43,7 @@ export const initLevel = () => {
     Game.ticker.add(gameLoop);
 };
 
-
-// ----------------  Create BACKGROUND  ----------------
+// --------------------------------------(Create BACKGROUND)
 let count = 0;
 
 const createBG = (texture) => {

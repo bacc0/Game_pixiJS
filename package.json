@@ -22,7 +22,6 @@
         "webpack-merge": "^4.2.2"
     },
     "dependencies": {
-        "phaser": "^3.50.0",
         "pixi.js": "^6.0.4"
     }
 }
