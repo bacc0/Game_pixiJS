@@ -8,10 +8,12 @@ export default class Hero extends PIXI.Sprite {
         super(PIXI.Texture.from(data.imageUrl));
 
         this.anchor.set(0.5);
-        this.x = data.x;
-        this.y = data.y;
-        this.width = data.width;
-        this.height = data.height;
+        this.x =  Game.view.width / 6;
+        this.y = Game.view.height / 2;
+
+        this.width = !data.width ? 120 : data.width;
+        this.height = !data.width ? 70 : data.height;
+        
     };
     updatePosition() {
         if (keys['38'] && hero.y !== 35) {

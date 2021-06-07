@@ -84,24 +84,15 @@ export const gameLoop = () => {
 // --------------------------------------(Create HERO)
 const createHero = () => {
 
-    hero = new Hero({
-        x: Game.view.width / 6,
-        y: Game.view.height / 2,
-        imageUrl: 'src/assets/sprites/player.png',
-        width: 120,
-        height: 70
-    });
+    hero = new Hero({ imageUrl: 'src/assets/sprites/player.png' });
     Game.stage.addChild(hero);
 
     heroExplosion = new Hero({
-        x: 0,
-        y: 0,
         imageUrl: 'src/assets/sprites/explosion.png',
         width: 150,
-        height: 130
+        height: 130,
     });
     Game.stage.addChild(heroExplosion);
-    heroExplosion.rotation = 0.2;
     heroExplosion.visible = false;
 };
 
@@ -115,8 +106,9 @@ const createEnemyTank = () => {
             imageUrl: 'src/assets/sprites/tank.png',
         });
         Game.stage.addChild(tank);
-        positionX += 200;
         tanks.push(tank);
+
+        positionX += 200;
     };
 };
 
@@ -142,10 +134,11 @@ const createEnemyAir = () => {
             y: tempY,
             imageUrl: 'src/assets/sprites/enemy.png',
         });
-        tempY -= 70;
-        tempX += 500;
         Game.stage.addChild(enemy);
         enemies.push(enemy);
+        
+        tempY -= 70;
+        tempX += 500;
     };
 };
 
