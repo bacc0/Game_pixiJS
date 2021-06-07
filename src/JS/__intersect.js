@@ -19,18 +19,17 @@ export const intersectHandler = (a, b, heroExplosion, gameOver) => {
         heroExplosion.y = a.y;
         heroExplosion.x = a.x - 30;
 
-        b.visible = false;
         a.visible = false;
+        b.x = -200;
 
         heroExplosion.visible = true;
         gameOver.visible = true;
         // audio.play();
 
         score = 0;
-
         return setTimeout(() => {
                 a.visible = true;
-                b.visible = true;
+                // b.visible = true;
 
                 heroExplosion.visible = false;
                 gameOver.visible = false;

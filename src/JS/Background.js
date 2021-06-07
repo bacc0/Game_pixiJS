@@ -2,7 +2,7 @@ import { Game, imagesBG, gameLoop } from '../index';
 
 
 export default class Background extends PIXI.Sprite {
-    
+
     constructor(data) {
         super();
         this.texture = data.textureBG;
@@ -19,28 +19,30 @@ export default class Background extends PIXI.Sprite {
 };
 
 
+
 export const initLevel = () => {
-    const BG_back = createBG(Game.loader.resources['BG_back'].texture);
-    const BG_middle_1 = createBG(Game.loader.resources['BG_middle_1'].texture);
-    const BG_middle_2 = createBG(Game.loader.resources['BG_middle_2'].texture);
-    const BG_front = createBG(Game.loader.resources['BG_front'].texture);
+    const oneBG = createBG(Game.loader.resources['oneBG'].texture);
+    const twoBG = createBG(Game.loader.resources['twoBG'].texture);
+    const threeBG = createBG(Game.loader.resources['threeBG'].texture);
+    const fourBG = createBG(Game.loader.resources['fourBG'].texture);
 
     Game.ticker.add(gameLoop);
 };
 
 
+// ----------------  Create BACKGROUND  ----------------
 let count = 0;
 
 const createBG = (texture) => {
     let newBG;
 
     let speed = count === 0
-        ? 0.5
-        : count === 1
-            ? 1.5
-            : count === 2
-                ? 3
-                : 6;
+                    ? 0.5
+                    : count === 1
+                        ? 1.5
+                        : count === 2
+                            ? 3
+                            : 6;
     newBG = new Background({ textureBG: texture, speedBG: speed });
     newBG.position.set(0, 0);
     Game.stage.addChild(newBG);
