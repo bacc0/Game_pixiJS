@@ -1,4 +1,5 @@
 import * as PIXI from "pixi.js";
+
 import Hero from './JS/Hero';
 import FireTank from './JS/FireTank';
 import EnemyAir from './JS/EnemyAir';
@@ -6,12 +7,6 @@ import EndScreen from './JS/EndScreen';
 import EnemyTank from './JS/EnemyTank';
 import { creatBackground } from './JS/Background';
 import { intersectHandler, score, updateScore } from './JS/__intersect';
-
-export class App {
-    run() {
-        start();
-    };
-};
 
 export let Game;
 
@@ -29,34 +24,35 @@ export let tanks = [];
 export let fireArr = [];
 export let imagesBG = [];
 
+
 // ---------------------------------------------------------[    INITIALIZING THE GAME    ]---------
-const start = () => {
-
-    Game = new PIXI.Application({
-        width: 1140,
-        height: 540,
-        backgroundColor: 0x60B6FF,
-    });
-    document.body.appendChild(Game.view);
-
-// --------------------------------------(Adding GAME ELEMENTS)   
-    creatBackground();
-    createGameOver();
-    createHero();
-    createEnemyAir();
-    createTankFire();
-    createEnemyTank();
-    createScore();
-
-    Game.ticker.add(gameLoop);
-
-// --------------------------------------(Add EVENT LISTENER)
-    window.addEventListener('keydown', keysDown);
-    window.addEventListener('keyup', keysUp);
+window.onload = () => {
+        Game = new PIXI.Application({
+            width: 1140,
+            height: 540,
+            backgroundColor: 0x60B6FF,
+        });
+        document.body.appendChild(Game.view);
+    
+    // --------------------------------------(Adding GAME ELEMENTS)   
+        creatBackground();
+        createGameOver();
+        createHero();
+        createEnemyAir();
+        createTankFire();
+        createEnemyTank();
+        createScore();
+    
+        Game.ticker.add(gameLoop);
+    
+    // --------------------------------------(Add EVENT LISTENER)
+        window.addEventListener('keydown', keysDown);
+        window.addEventListener('keyup', keysUp);
 };
-
 const keysDown = e => { keys[e.keyCode] = true; };
 const keysUp = e => { keys[e.keyCode] = false; };
+
+
 
 // -----------------------------------------------------------[     GAME LOOP     ]-----------------
 export const gameLoop = () => {
@@ -84,6 +80,7 @@ export const gameLoop = () => {
     scoreText.text = `Score: ${(score / 1000).toFixed(1)}00 km`;
     updateScore(score);
 };
+
 
 
 // --------------------------------------(Create HERO)
@@ -177,9 +174,6 @@ const createScore = () => {
     });
     scoreText.x = 10;
     Game.stage.addChild(scoreText);
-
-    
-
 };
 
 // --------------------------------------(Create GAME OVER Screen)

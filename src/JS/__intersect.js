@@ -30,7 +30,6 @@ export const intersectHandler = (a, b, heroExplosion, gameOver) => {
         return setTimeout(() => {
                 a.visible = true;
                 // b.visible = true;
-
                 heroExplosion.visible = false;
                 gameOver.visible = false;
 
