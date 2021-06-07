@@ -13,9 +13,10 @@ export let Game;
 let gameOver,
     scoreText,
     heroExplosion;
+    
 let enemies = [];
 
-export let hero;
+export let hero ;
 export let keys = {};
 export let tanks = [];
 export let fireArr = [];
@@ -111,10 +112,7 @@ const createEnemyTank = () => {
     for (let i = 0; i <= 2; i++) {
         const tank = new EnemyTank({
             x: positionX,
-            y: 454,
             imageUrl: 'src/assets/sprites/tank.png',
-            width: 120,
-            height: 40
         });
         Game.stage.addChild(tank);
         positionX += 200;
@@ -126,14 +124,7 @@ const createEnemyTank = () => {
 const createTankFire = () => {
 
     for (let i = 1; i <= 6; i++) {
-        const fire = new FireTank({
-            x: 800,
-            y: 450,
-            imageUrl: 'src/assets/sprites/fire.png',
-        });
-        fire.rotation = 3.6;
-        fire.width = 26;
-        fire.height = 10;
+        const fire = new FireTank( 'src/assets/sprites/fire.png' );
         Game.stage.addChild(fire);
         fireArr.push(fire);
     };
@@ -150,7 +141,6 @@ const createEnemyAir = () => {
             x: tempX,
             y: tempY,
             imageUrl: 'src/assets/sprites/enemy.png',
-            speed: 7
         });
         tempY -= 70;
         tempX += 500;
@@ -162,24 +152,16 @@ const createEnemyAir = () => {
 // --------------------------------------(Create SCORE)
 const createScore = () => {
     scoreText = new PIXI.Text('Score: 0');
-
-    scoreText.style = new PIXI.TextStyle({
-        fill: 0xFFFFFF,
-        fontFamily: 'Goldman',
-        fontSize: 30
-    });
+    scoreText.style = new PIXI.TextStyle({ fill: 0xFFFFFF, fontFamily: 'Goldman', fontSize: 30 });
     scoreText.x = 10;
     Game.stage.addChild(scoreText);
 };
 
 // --------------------------------------(Create GAME OVER Screen)
 const createGameOver = () => {
-
-    gameOver = new EndScreen({
-        x: 100,
-        y: 0,
-        imageUrl: 'src/assets/sprites/game_over.png'
-    });
+    gameOver = new EndScreen( 'src/assets/sprites/game_over.png' );
     Game.stage.addChild(gameOver);
     gameOver.visible = false;
 };
+
+

@@ -6,9 +6,9 @@ export default class EnemyTank extends PIXI.Sprite {
 
         this.anchor.set(0.5);
         this.x = data.x;
-        this.y = data.y;
-        this.width = data.width;
-        this.height = data.height;
+        this.y = 454;
+        this.width = 120;
+        this.height = 40;
     }
     updatePosition() {
 

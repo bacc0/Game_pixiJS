@@ -6,12 +6,13 @@ export default class EnemyAir extends PIXI.Sprite {
         super(PIXI.Texture.from(data.imageUrl));
 
         this.anchor.set(0.5);
-        this.speed = data.speed;
-        this.x = data.x;
-        this.y = data.y;
+        this.speed = 7;
         this.width = 110;
         this.height = 77;
         this.rotation = -0.04;
+        
+        this.x = data.x;
+        this.y = data.y;
     }
     updatePosition() {
 
